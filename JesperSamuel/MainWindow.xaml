@@ -1,7 +1,7 @@
 ﻿<Window x:Class="JesperSamuel.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Bästa appen någonsin" Height="350" Width="525">
     <Grid>
         
     </Grid>
