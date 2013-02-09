@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace NewspaperLibrary
 {
@@ -12,6 +13,9 @@ namespace NewspaperLibrary
 
     public class Newspaper
     {
+        private static readonly string sHttpPattern = "^(https?://)?(www" + Regex.Escape(".") + ")?[A-Za-z]+" + Regex.Escape(".") + "[A-Za-z]+";
+        private static readonly Regex sHttpRgx = new Regex(sHttpPattern);
+
         private Uri mUri;
         public Uri Uri
         {
@@ -26,6 +30,22 @@ namespace NewspaperLibrary
             set { mName = value; }
         }
 
+        public Newspaper(string urlString)
+        {
+            if (urlString == null) throw new ArgumentNullException();
+            if (urlString.Length < 4) throw new ArgumentException();
+            if (sHttpRgx.IsMatch(urlString))
+            {
+                if (!urlString.Substring(0, 4).Contains("www.")) urlString = "www." + urlString;
+                if (!urlString.Substring(0, 4).Contains("http")) urlString = "http://" + urlString;
+                mUri = new Uri(urlString);
+                Console.WriteLine(urlString);
+            }
+            else
+            {
+                Console.WriteLine(String.Format("Fel format: {0}", urlString));
+            }  
+        }
         
     }
 }

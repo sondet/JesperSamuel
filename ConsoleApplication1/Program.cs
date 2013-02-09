@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MelloLibrary;
+using NewspaperLibrary;
 
 namespace ConsoleApplication1
 {
@@ -11,6 +12,7 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
+            testNewspaper();
             Console.WriteLine("sha ere final lr?");
             string svar = Console.ReadLine().ToLower();
             bool b;
@@ -23,10 +25,19 @@ namespace ConsoleApplication1
                 Console.WriteLine(line);
             }
 
-            b = (svar == "ja" || svar.Substring(0, 2) == "ye") ? true : false;
-            Competition c = new Competition(b);
-            Console.WriteLine(c.IsFinal.ToString());
+            //b = (svar == "ja" || svar.Substring(0, 2) == "ye") ? true : false;
+            //Competition c = new Competition(b);
+            //Console.WriteLine(c.IsFinal.ToString());
             Console.ReadLine();
+        }
+
+        private static void testNewspaper()
+        {
+            string s = "http://www.aftonbladet.se";
+            Newspaper n = new Newspaper(s);
+            Console.WriteLine("url:");
+            string input = Console.ReadLine();
+            Newspaper n1 = new Newspaper(input);
         }
     }
 }
