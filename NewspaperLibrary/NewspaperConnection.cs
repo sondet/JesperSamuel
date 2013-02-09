@@ -13,7 +13,7 @@ namespace NewspaperLibrary
 
     public class Newspaper
     {
-        private static readonly string sHttpPattern = "^(https?://)?(www" + Regex.Escape(".") + ")?[A-Za-z]+" + Regex.Escape(".") + "[A-Za-z]+";
+        private static readonly string sHttpPattern = "^(http://)?(www" + Regex.Escape(".") + ")?[A-Za-z]+" + Regex.Escape(".") + "[A-Za-z]+";
         private static readonly Regex sHttpRgx = new Regex(sHttpPattern);
 
         private Uri mUri;
@@ -36,8 +36,13 @@ namespace NewspaperLibrary
             if (urlString.Length < 4) throw new ArgumentException();
             if (sHttpRgx.IsMatch(urlString))
             {
-                if (!urlString.Substring(0, 4).Contains("www.")) urlString = "www." + urlString;
-                if (!urlString.Substring(0, 4).Contains("http")) urlString = "http://" + urlString;
+
+                if (!urlString.Substring(0, 4).Contains("http"))
+                {
+                    if (!urlString.Substring(7, 4).Contains("www.")) urlString = "www." + urlString;
+                    urlString = "http://" + urlString;
+                }
+                
                 mUri = new Uri(urlString);
                 Console.WriteLine(urlString);
             }
