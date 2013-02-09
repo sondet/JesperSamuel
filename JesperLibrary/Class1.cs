@@ -8,5 +8,6 @@ namespace JesperLibrary
 {
     public class Class1
     {
+        public string Lastname { get; set; }
     }
 }
