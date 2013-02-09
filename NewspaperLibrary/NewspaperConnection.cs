@@ -115,6 +115,13 @@ namespace NewspaperLibrary
             Console.WriteLine(name);
             return name;
         }
+
+        public static List<Newspaper> CreateNewspapersFromFile(string filePath)
+        {
+            List<Newspaper> papers = new List<Newspaper>();
+            //StreamReader reader = new StreamReader(Directory.GetCurrentDirectory() + @"\Newspapers.txt"
+            return papers;
+        }
         
     }
 }
