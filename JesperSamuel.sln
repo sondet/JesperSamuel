@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JesperSamuel", "JesperSamuel\JesperSamuel.csproj", "{DBF19513-8139-47D6-B7C9-B7A19151039F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JesperLibrary", "JesperLibrary\JesperLibrary.csproj", "{5485474A-8BEB-4A84-B3A3-1F31C69E9F0A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MelloLibrary", "JesperLibrary\MelloLibrary.csproj", "{5485474A-8BEB-4A84-B3A3-1F31C69E9F0A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryTest", "ConsoleApplication1\LibraryTest.csproj", "{93492CFF-F1AD-43C5-BE65-557F3A28DF0F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,6 +21,10 @@ Global
 		{5485474A-8BEB-4A84-B3A3-1F31C69E9F0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5485474A-8BEB-4A84-B3A3-1F31C69E9F0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5485474A-8BEB-4A84-B3A3-1F31C69E9F0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93492CFF-F1AD-43C5-BE65-557F3A28DF0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93492CFF-F1AD-43C5-BE65-557F3A28DF0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93492CFF-F1AD-43C5-BE65-557F3A28DF0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93492CFF-F1AD-43C5-BE65-557F3A28DF0F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
