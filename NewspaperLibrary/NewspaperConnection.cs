@@ -4,11 +4,33 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using System.Net;
+using System.IO;
+using MelloLibrary;
 
 namespace NewspaperLibrary
 {
+    public delegate void SearchCompleteEventHandler();
+
     public class NewspaperConnection
     {
+        private WebClient mClient;
+
+        public List<Newspaper> Newspapers { get; set; }
+
+
+        public NewspaperConnection()
+        {
+            mClient = new WebClient();
+        }
+
+        public void SearchNewspaperForKeywords(Newspaper paper, Competition competition)
+        {
+            string paperStr = mClient.DownloadString(paper.Uri.ToString());
+            Console.WriteLine(paperStr);
+        }
+
+
     }
 
     public class Newspaper

@@ -38,6 +38,8 @@ namespace ConsoleApplication1
             Console.WriteLine("url:");
             string input = Console.ReadLine();
             Newspaper n1 = new Newspaper(input);
+            NewspaperConnection connection = new NewspaperConnection();
+            connection.SearchNewspaperForKeywords(n1, new Competition(false,new string[0],new string[0]));
         }
     }
 }

@@ -42,6 +42,12 @@
     <Compile Include="NewspaperConnection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JesperLibrary\MelloLibrary.csproj">
+      <Project>{5485474a-8beb-4a84-b3a3-1f31c69e9f0a}</Project>
+      <Name>MelloLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
