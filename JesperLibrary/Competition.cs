@@ -10,10 +10,16 @@ namespace MelloLibrary
     {
         public bool IsFinal 
         { get; set; }
-        
-        public Competition(bool isFinal)
+        public string[] artists
+        { get; set; }
+        public string[] songTitles
+        { get; set; }
+        public Competition(bool isFinal, string[] artists, string[] songTitles)
         {
             this.IsFinal = isFinal;
+            this.artists = artists;
+            this.songTitles = songTitles;
         }
+
     }
 }
