@@ -11,6 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewspaperLibrary", "Newspap
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{48B40AE2-806B-4B04-AF3A-21E27559BBD3}"
 	ProjectSection(SolutionItems) = preProject
+		Competition.txt = Competition.txt
 		Newspapers.txt = Newspapers.txt
 	EndProjectSection
 EndProject
