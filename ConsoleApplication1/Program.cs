@@ -39,7 +39,12 @@ namespace ConsoleApplication1
             string input = Console.ReadLine();
             Newspaper n1 = new Newspaper(input);
             NewspaperConnection connection = new NewspaperConnection();
-            connection.SearchNewspaperForKeywords(n1, new Competition(false,new string[0],new string[0]));
+            //connection.SearchNewspaperForKeywords(n1, new Competition(false,new string[0],new string[0]));
+            List<Newspaper> nn = Newspaper.CreateNewspapersFromFile("Newspapers.txt");
+            foreach (Newspaper news in nn)
+            {
+                Console.WriteLine(news);
+            }
         }
     }
 }

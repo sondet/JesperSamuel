@@ -33,6 +33,9 @@ namespace NewspaperLibrary
 
     }
 
+    /// <summary>
+    /// Class that represents a Newspaper on the web.
+    /// </summary>
     public class Newspaper
     {
         private static readonly string sHttpPattern = "^(http://)?(www" + Regex.Escape(".") + ")?[A-Za-z]+" + Regex.Escape(".") + "[A-Za-z]+";
@@ -90,12 +93,12 @@ namespace NewspaperLibrary
                     if (!urlString.Substring(0, 4).Contains("www.")) urlString = "www." + urlString;
                     urlString = "http://" + urlString;
                 }
-                Console.WriteLine(urlString);
+                //Console.WriteLine(urlString);
                 return urlString;    
             }
             else
             {
-                Console.WriteLine(String.Format("Fel format: {0}", urlString));
+                //Console.WriteLine(String.Format("Fel format: {0}", urlString));
                 throw new ArgumentException("Incorrect format for url");
             }
         }
@@ -112,15 +115,36 @@ namespace NewspaperLibrary
             string[] split = noHttp.Split(new char[1]{'.'});
             if (split[0].Length < 2) throw new ArgumentException("URL too short");
             string name = char.ToUpper(split[0][0]) + split[0].Substring(1);
-            Console.WriteLine(name);
+            //Console.WriteLine(name);
             return name;
         }
 
-        public static List<Newspaper> CreateNewspapersFromFile(string filePath)
+        public static List<Newspaper> CreateNewspapersFromFile(string fileName)
         {
             List<Newspaper> papers = new List<Newspaper>();
-            //StreamReader reader = new StreamReader(Directory.GetCurrentDirectory() + @"\Newspapers.txt"
-            return papers;
+            StreamReader reader = new StreamReader(Directory.GetCurrentDirectory() + "\\" + fileName);
+            string line = "";
+            while (line != null)
+            {
+                try
+                {
+                    line = reader.ReadLine();
+                    Newspaper n = new Newspaper(line);
+                    papers.Add(n);
+                }
+                catch (Exception)
+                {
+                    continue;
+                }
+            }
+            reader.Close();
+            papers.TrimExcess();
+            return (papers.Count > 0) ? papers: null;
+        }
+
+        public override string ToString()
+        {
+            return mUri.ToString() + " :: " + mName.ToString();
         }
         
     }
