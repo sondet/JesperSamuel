@@ -20,7 +20,10 @@ namespace MelloLibrary
         { get; set; }
 
         private Dictionary<int, Song> mSongs;
-        public Dictionary<int, Song> Songs { get { return mSongs; } }
+        public Dictionary<int, Song> Songs {
+            get { return mSongs; }
+            set { mSongs = value; }
+        }
 
         /// <summary>
         /// Constructor - Creates an empty competition
@@ -30,6 +33,7 @@ namespace MelloLibrary
             IsFinal = false;
             mSongs = new Dictionary<int, Song>(10);
         }
+
         /// <summary>
         /// Constructor
         /// </summary>

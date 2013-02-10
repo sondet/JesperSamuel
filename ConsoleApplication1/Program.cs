@@ -12,7 +12,8 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
-            testNewspaper();
+            testCompetition();
+            //testNewspaper();
             //Console.WriteLine("sha ere final lr?");
             //string svar = Console.ReadLine().ToLower();
             //bool b;
@@ -46,6 +47,15 @@ namespace ConsoleApplication1
             {
                 Console.WriteLine(news);
             }
+        }
+
+        private static void testCompetition()
+        {
+            Competition c = new Competition();
+            c.Songs[1] = "Hejsan 1";
+            Console.WriteLine(c.Songs[5]);
+            Console.WriteLine(c.Songs.ElementAt(0));
+            Console.WriteLine(c.Songs[1]);
         }
     }
 }
