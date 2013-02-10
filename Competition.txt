@@ -1,2 +1,10 @@
 Competition;Karlskrona;1
-Song;
+David;Lindgren;Skyline
+Cookies N Beans;Burning Flags
+Jay-Jay;Johansson;Paris
+Mary;N’diaye;Gosa
+Eric;Gadd;Vi kommer aldrig att förlora
+YOHIO;Heartbreak Hotel
+Anna;Järvinen;Porslin
+Michael Feiner & Caisa;We’re Still Kids
+#

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MelloLibrary
 {
-    class Artist
+    public class Artist
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -38,7 +38,7 @@ namespace MelloLibrary
         public override string ToString()
         {
             if (GroupName != null) return GroupName.ToString();
-            return FirstName.ToString() + LastName.ToString();
+            return FirstName.ToString() + " " + LastName.ToString();
         }
 
     }

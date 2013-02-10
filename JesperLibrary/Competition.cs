@@ -19,6 +19,9 @@ namespace MelloLibrary
         public string[] songTitles
         { get; set; }
 
+        public string City { get; set; }
+        public int CompetitionNumber { get; set; }
+
         private Dictionary<int, Song> mSongs;
         public Dictionary<int, Song> Songs {
             get { return mSongs; }
@@ -49,6 +52,7 @@ namespace MelloLibrary
 
         public static List<Competition> CreateFromFile(string fileName)
         {
+            List<Competition> competitions = new List<Competition>();
             StreamReader reader = null;
             try
             {
@@ -67,8 +71,47 @@ namespace MelloLibrary
 
             string line = "";
 
-            //TODO: static method to create a competition object from a file
-            throw new NotImplementedException();
+            while ((line = reader.ReadLine()) != null)
+            {
+                string[] parts = line.Split(';');
+                if (parts[0].Equals("Competition"))
+                {
+                    Competition comp = new Competition();
+                    switch (parts.Length)
+                    {
+                        case 3:
+                            comp.City = parts[1];
+                            comp.CompetitionNumber = int.Parse(parts[2]);
+                            break;
+                        default:
+                            throw new FormatException();
+                    }
+
+                    string songline = "";
+                    int i = 1;
+                    while (!(songline = reader.ReadLine()).Equals("#"))
+                    {
+                        string[] songparts = songline.Split(';');
+                        switch (songparts.Length)
+                        {
+                            case 2:
+                                comp.Songs.Add(i, new Song(new Artist(songparts[0]), songparts[1]));
+                                break;
+                            case 3:
+                                comp.Songs.Add(i, new Song(new Artist(songparts[0], songparts[1]), songparts[2]));
+                                break;
+                            default:
+                                break;
+                        }
+                        i++;
+                    }
+                    competitions.Add(comp);
+                }
+
+            }
+            reader.Close();
+            competitions.TrimExcess();
+            return competitions;
         }
 
     }

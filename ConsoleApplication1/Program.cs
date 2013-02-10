@@ -51,11 +51,7 @@ namespace ConsoleApplication1
 
         private static void testCompetition()
         {
-            Competition c = new Competition();
-            c.Songs[1] = "Hejsan 1";
-            Console.WriteLine(c.Songs[5]);
-            Console.WriteLine(c.Songs.ElementAt(0));
-            Console.WriteLine(c.Songs[1]);
+            List<Competition> c = Competition.CreateFromFile("Competition.txt");
         }
     }
 }

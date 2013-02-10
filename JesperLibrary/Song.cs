@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MelloLibrary
 {
-    class Song
+    public class Song
     {
         public Artist Artist { get; set; }
         public string Title { get; set; }
