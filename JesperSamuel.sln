@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JesperSamuel", "JesperSamue
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MelloLibrary", "JesperLibrary\MelloLibrary.csproj", "{5485474A-8BEB-4A84-B3A3-1F31C69E9F0A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryTest", "ConsoleApplication1\LibraryTest.csproj", "{93492CFF-F1AD-43C5-BE65-557F3A28DF0F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JesperTest", "ConsoleApplication1\JesperTest.csproj", "{93492CFF-F1AD-43C5-BE65-557F3A28DF0F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewspaperLibrary", "NewspaperLibrary\NewspaperLibrary.csproj", "{2A4A25F6-683D-4B31-908D-8C901A5D327E}"
 EndProject
@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		Newspapers.txt = Newspapers.txt
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SamuelTest", "ConsoleApplication2\SamuelTest.csproj", "{D4162565-B864-437A-B3B3-30D1B5BB236E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,6 +38,10 @@ Global
 		{2A4A25F6-683D-4B31-908D-8C901A5D327E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A4A25F6-683D-4B31-908D-8C901A5D327E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A4A25F6-683D-4B31-908D-8C901A5D327E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4162565-B864-437A-B3B3-30D1B5BB236E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4162565-B864-437A-B3B3-30D1B5BB236E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4162565-B864-437A-B3B3-30D1B5BB236E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4162565-B864-437A-B3B3-30D1B5BB236E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
