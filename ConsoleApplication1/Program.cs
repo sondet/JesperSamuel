@@ -52,6 +52,7 @@ namespace ConsoleApplication1
         private static void testCompetition()
         {
             List<Competition> c = Competition.CreateFromFile("Competition.txt");
+            Console.WriteLine(c[0]);
         }
     }
 }

@@ -50,6 +50,24 @@ namespace MelloLibrary
             this.songTitles = songTitles;
         }
 
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            try
+            {
+                sb.AppendFormat("Deltävling {0} i {1}:\nLåtar:\n", CompetitionNumber.ToString(), City.ToString());
+                foreach (KeyValuePair<int, Song> song in Songs)
+                {
+                    sb.AppendFormat("{0}: {1}\n", song.Key.ToString(), song.Value.ToString());
+                }
+            }
+            catch (Exception e)
+            {
+                return "Missing songs" + e.Message;
+            }
+            return sb.ToString();
+        }
+
         public static List<Competition> CreateFromFile(string fileName)
         {
             List<Competition> competitions = new List<Competition>();
