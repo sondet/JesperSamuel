@@ -36,11 +36,12 @@ namespace ConsoleApplication1
             string s = "http://www.aftonbladet.se";
             Newspaper n = new Newspaper(s);
             Console.WriteLine("url:");
-            string input = Console.ReadLine();
-            Newspaper n1 = new Newspaper(input);
+            //string input = Console.ReadLine();
+            //Newspaper n1 = new Newspaper(input);
             NewspaperConnection connection = new NewspaperConnection();
             //connection.SearchNewspaperForKeywords(n1, new Competition(false,new string[0],new string[0]));
-            List<Newspaper> nn = Newspaper.CreateNewspapersFromFile("Newspapers.txt");
+            List<Newspaper> nn = Newspaper.CreateNewspapersFromFile("Newspapersss.txt");
+            if (nn == null) return;
             foreach (Newspaper news in nn)
             {
                 Console.WriteLine(news);

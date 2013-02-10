@@ -122,7 +122,22 @@ namespace NewspaperLibrary
         public static List<Newspaper> CreateNewspapersFromFile(string fileName)
         {
             List<Newspaper> papers = new List<Newspaper>();
-            StreamReader reader = new StreamReader(Directory.GetCurrentDirectory() + "\\" + fileName);
+            StreamReader reader = null;
+            try
+            {
+                reader = new StreamReader(Directory.GetCurrentDirectory() + "\\" + fileName);
+            }
+            catch (FileNotFoundException e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+            
             string line = "";
             while (line != null)
             {
