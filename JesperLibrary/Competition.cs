@@ -21,5 +21,11 @@ namespace MelloLibrary
             this.songTitles = songTitles;
         }
 
+        public static Competition CreateFromFile(string fileName)
+        {
+            //TODO: static method to create a competition object from a file
+            throw new NotImplementedException();
+        }
+
     }
 }
