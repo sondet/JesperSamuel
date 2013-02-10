@@ -14,6 +14,12 @@ namespace MelloLibrary
         { get; set; }
         public string[] songTitles
         { get; set; }
+        /// <summary>
+        /// Class that stores data describing a competition in Melodifestivalen.
+        /// </summary>
+        /// <param name="isFinal">Property that describes if the competition is the final one</param>
+        /// <param name="artists">Array of Strings with artists</param>
+        /// <param name="songTitles">Array of strings with song titles.</param>
         public Competition(bool isFinal, string[] artists, string[] songTitles)
         {
             this.IsFinal = isFinal;
