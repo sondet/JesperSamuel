@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MelloLibrary;
 using NewspaperLibrary;
+using WebLibrary;
 
 namespace ConsoleApplication1
 {
@@ -12,7 +13,8 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
-            testCompetition();
+            testWebLibrary();
+            //testCompetition();
             //testNewspaper();
             //Console.WriteLine("sha ere final lr?");
             //string svar = Console.ReadLine().ToLower();
@@ -54,6 +56,20 @@ namespace ConsoleApplication1
             List<Competition> c = Competition.CreateFromFile("Competition.txt");
             Console.WriteLine(c[0]);
             Console.WriteLine(c[1]);
+        }
+
+        private static void testWebLibrary()
+        {
+            WebSite ws = new WebSite("google");
+            try
+            {
+                Console.WriteLine(ws.Uri.AbsoluteUri);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("END");
+            }
+            
         }
     }
 }

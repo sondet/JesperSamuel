@@ -56,6 +56,10 @@
       <Project>{2a4a25f6-683d-4b31-908d-8c901a5d327e}</Project>
       <Name>NewspaperLibrary</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WebLibrary\WebLibrary.csproj">
+      <Project>{05504b6d-bf9b-4e7e-ac82-23f376bcf45d}</Project>
+      <Name>WebLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
