@@ -60,14 +60,17 @@ namespace ConsoleApplication1
 
         private static void testWebLibrary()
         {
-            WebSite ws = new WebSite("google");
+            WebSite ws = new WebSite("aftonbladet.se");
             try
             {
+                Console.WriteLine(ws.RawContent);
                 Console.WriteLine(ws.Uri.AbsoluteUri);
+                ws.DownloadRawContent();
+                Console.WriteLine(ws.RawContent);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                Console.WriteLine("END");
+                Console.WriteLine("ERROR IN TEST:\n" + e.Message);
             }
             
         }
