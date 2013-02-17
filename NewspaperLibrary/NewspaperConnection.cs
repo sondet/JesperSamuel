@@ -90,7 +90,8 @@ namespace NewspaperLibrary
             {
                 if (!urlString.Substring(0, 4).Contains("http"))
                 {
-                    if (!urlString.Substring(0, 4).Contains("www.")) urlString = "www." + urlString;
+                    if (!urlString.Substring(0, 4).Contains("www."))
+                        urlString = "www." + urlString;
                     urlString = "http://" + urlString;
                 }
                 //Console.WriteLine(urlString);
