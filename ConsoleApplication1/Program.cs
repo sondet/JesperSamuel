@@ -60,13 +60,19 @@ namespace ConsoleApplication1
 
         private static void testWebLibrary()
         {
+            SiteSearcher searcher = new SiteSearcher();
+            //string s = searcher.stripHtmlTags("");
+            //Console.WriteLine(s);
+            //return;
             WebSite ws = new WebSite("aftonbladet.se");
             try
             {
                 Console.WriteLine(ws.RawContent);
                 Console.WriteLine(ws.Uri.AbsoluteUri);
                 ws.DownloadRawContent();
-                Console.WriteLine(ws.RawContent);
+                //Console.WriteLine(ws.RawContent);
+                SiteSearchResult result = searcher.SearchSiteForWord(ws, "aftonbladet");
+                Console.WriteLine(result.Occurences);
             }
             catch (Exception e)
             {

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net;
 using System.Text.RegularExpressions;
+using System.IO;
 
 namespace WebLibrary
 {
@@ -13,7 +14,7 @@ namespace WebLibrary
     /// </summary>
     public class SiteSearcher
     {
-        
+
 
         public SiteSearcher()
         {
@@ -29,15 +30,47 @@ namespace WebLibrary
             if (string.IsNullOrWhiteSpace(rawHtml))
                 throw new ArgumentException("WebSite object had no raw content");
 
-            Regex rgx = new Regex(word);
+            rawHtml = stripHtmlTags(rawHtml);
+            Console.WriteLine(rawHtml);
+
+            Regex rgx = new Regex(word+"[^\\b]",RegexOptions.IgnoreCase);
 
             MatchCollection matches = rgx.Matches(rawHtml);
             if (matches.Count > 0)
             {
-                return new SiteSearchResult(webSite,word) {Occurences = matches.Count};
+                return new SiteSearchResult(webSite, word) { Occurences = matches.Count };
             }
-            return new SiteSearchResult(webSite,word) {Occurences = 0};
+            return new SiteSearchResult(webSite, word) { Occurences = 0 };
         }
+
+        public string stripHtmlTags(string s)
+        {
+            StringBuilder builder = new StringBuilder();
+            bool insideTag = false;
+
+            bool outsideTag = true; //På något sätt ta hänsyn till om man är utanför taggen för att tillåta <> utanför tags
+
+            //s = "<html>Hejsan</html><>";
+            foreach (char c in s)
+            {
+                Console.WriteLine(c.ToString());
+                if (c.Equals('<') && insideTag == false)
+                {
+                    insideTag = true;
+                    continue;
+                }
+                else if (c.Equals('>') && insideTag == true)
+                {
+                    insideTag = false;
+                    continue;
+                }
+                string a = insideTag ? "" : c.ToString();
+                builder.Append(a);
+
+            }
+            return builder.ToString();
+        }
+    }
 
     public class SiteSearchResult
     {
@@ -53,5 +86,4 @@ namespace WebLibrary
             this.Word = forWord;
         }
     }
-
 }
