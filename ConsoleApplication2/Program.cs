@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace ConsoleApplication2
 {
@@ -10,8 +11,11 @@ namespace ConsoleApplication2
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hej Världen!");
+            string[] asdf = Directory.GetCurrentDirectory().Split('\\');
+            Console.WriteLine(asdf[asdf.GetUpperBound(0)]);
             Console.ReadLine();
+
+
         }
     }
 }
