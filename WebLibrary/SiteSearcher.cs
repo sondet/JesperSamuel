@@ -47,26 +47,59 @@ namespace WebLibrary
         {
             StringBuilder builder = new StringBuilder();
             bool insideTag = false;
+            bool insideScript = false;
 
-            bool outsideTag = true; //På något sätt ta hänsyn till om man är utanför taggen för att tillåta <> utanför tags
+            //s = "<html><div>Hejsan</div></html><script>if x<0 do something </script>";
+            int i = 0;
+            int length = s.Length;
 
-            //s = "<html>Hejsan</html><>";
-            foreach (char c in s)
+            while (i < length)
             {
-                Console.WriteLine(c.ToString());
+                char c = s[i];
+
+                if (insideScript)
+                {
+                    if (i + 1 < length)
+                    {
+                        if (c.Equals('<') && s[i + 1].Equals('/'))
+                        {
+                            insideScript = false;
+                            insideTag = true;
+                        }
+                        i++;
+                        continue;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
                 if (c.Equals('<') && insideTag == false)
                 {
                     insideTag = true;
+                    if (i + 2 < length)
+                    {
+                        if (s[i + 1].Equals('s') && s[i + 2].Equals('c'))
+                        {
+                            insideScript = true;
+                        }
+                        else
+                        {
+                            insideScript = false;
+                        }
+                    }
+                    i++;
                     continue;
                 }
                 else if (c.Equals('>') && insideTag == true)
                 {
                     insideTag = false;
+                    i++;
                     continue;
                 }
-                string a = insideTag ? "" : c.ToString();
-                builder.Append(a);
-
+                if (!(insideTag))
+                    builder.Append(c.ToString());
+                i++;
             }
             return builder.ToString();
         }
