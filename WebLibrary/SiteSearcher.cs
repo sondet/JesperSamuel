@@ -46,7 +46,7 @@ namespace WebLibrary
             return new SiteSearchResult(webSite, word) { Occurences = 0 };
         }
 
-        public MatchCollection GetLinksFromSite(WebSite webSite)
+        public List<string> GetLinksFromSite(WebSite webSite)
         {
             if (webSite == null) throw new ArgumentNullException("webSite");
 
@@ -56,7 +56,32 @@ namespace WebLibrary
 
             Regex rgx = new Regex("<a href=\"[^\\\"]+");
             MatchCollection matches = rgx.Matches(rawHtml);
-            return matches;
+
+            if (!(matches.Count > 0))
+                return null;
+
+            List<string> urls = new List<string>();
+
+            foreach (Match match in matches)
+            {
+                string url = null;
+                try
+                {
+                    url = match.Value.Substring(9);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                finally
+                {
+                    if (url != null && !urls.Contains(url))
+                    {
+                        urls.Add(url);
+                    }
+                }
+            }
+            return urls;
 
         }
 

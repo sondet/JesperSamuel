@@ -65,7 +65,7 @@ namespace ConsoleApplication1
             //string s = searcher.stripHtmlTags("");
             //Console.WriteLine(s);
             //return;
-            WebSite ws = new WebSite("aftonbladet.se");
+            WebSite ws = new WebSite("www.aftonbladet.se");
             try
             {
                 //Console.WriteLine(ws.RawContent);
@@ -79,18 +79,47 @@ namespace ConsoleApplication1
                 {
                     Console.WriteLine(match.Value);
                 }
-
-                MatchCollection c = searcher.GetLinksFromSite(ws);
-                foreach (Match match in c)
-                {
-                    Console.WriteLine(match.Value);
-                }
-                Console.WriteLine(c.Count);
             }
             catch (Exception e)
             {
                 Console.WriteLine("ERROR IN TEST:\n" + e.Message);
             }
+
+            List<Uri> uris = new List<Uri>();
+            List<string> c = searcher.GetLinksFromSite(ws);
+            foreach (string url in c)
+            {
+                Uri u = null;
+                try
+                {
+                    bool b = Uri.TryCreate(url, UriKind.Absolute, out u);
+                    if (b == false)
+                        continue;
+                }
+                catch (UriFormatException e)
+                {
+                    Console.WriteLine(e.Message);
+                    Console.ReadLine();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                finally
+                {
+                    if (u != null)
+                    {
+                        if (ws.Uri.IsBaseOf(u))
+                        {
+                            uris.Add(u);
+                            Console.WriteLine(u.AbsoluteUri);
+                        }
+                    }
+                }
+            }
+            Console.WriteLine(uris.Count);
+            
+
             
         }
     }
