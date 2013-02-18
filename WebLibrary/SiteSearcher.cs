@@ -46,6 +46,20 @@ namespace WebLibrary
             return new SiteSearchResult(webSite, word) { Occurences = 0 };
         }
 
+        public MatchCollection GetLinksFromSite(WebSite webSite)
+        {
+            if (webSite == null) throw new ArgumentNullException("webSite");
+
+            string rawHtml = webSite.RawContent;
+            if (string.IsNullOrWhiteSpace(rawHtml))
+                throw new ArgumentException("WebSite object had no raw content");
+
+            Regex rgx = new Regex("<a href=\"[^\\\"]+");
+            MatchCollection matches = rgx.Matches(rawHtml);
+            return matches;
+
+        }
+
         public string stripHtmlTags(string s)
         {
             StringBuilder builder = new StringBuilder();

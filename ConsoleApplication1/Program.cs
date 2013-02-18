@@ -79,6 +79,13 @@ namespace ConsoleApplication1
                 {
                     Console.WriteLine(match.Value);
                 }
+
+                MatchCollection c = searcher.GetLinksFromSite(ws);
+                foreach (Match match in c)
+                {
+                    Console.WriteLine(match.Value);
+                }
+                Console.WriteLine(c.Count);
             }
             catch (Exception e)
             {
