@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using MelloLibrary;
 using NewspaperLibrary;
 using WebLibrary;
+using System.Text.RegularExpressions;
 
 namespace ConsoleApplication1
 {
@@ -71,8 +72,13 @@ namespace ConsoleApplication1
                 Console.WriteLine(ws.Uri.AbsoluteUri);
                 ws.DownloadRawContent();
                 //Console.WriteLine(ws.RawContent);
-                SiteSearchResult result = searcher.SearchSiteForWord(ws, "aftonbladet");
+                SiteSearchResult result = searcher.SearchSiteForWord(ws, "super");
                 Console.WriteLine(result.Occurences);
+                searcher.WriteToFile();
+                foreach (Match match in result.Matches)
+                {
+                    Console.WriteLine(match.Value);
+                }
             }
             catch (Exception e)
             {

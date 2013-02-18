@@ -14,7 +14,8 @@ namespace WebLibrary
     /// </summary>
     public class SiteSearcher
     {
-
+        private string _RawHTML;
+        private string _StrippedHTML;
 
         public SiteSearcher()
         {
@@ -29,16 +30,18 @@ namespace WebLibrary
             string rawHtml = webSite.RawContent;
             if (string.IsNullOrWhiteSpace(rawHtml))
                 throw new ArgumentException("WebSite object had no raw content");
+            _RawHTML = rawHtml;
 
             rawHtml = stripHtmlTags(rawHtml);
             Console.WriteLine(rawHtml);
+            _StrippedHTML = rawHtml;
 
             Regex rgx = new Regex(word+"[^\\b]",RegexOptions.IgnoreCase);
 
             MatchCollection matches = rgx.Matches(rawHtml);
             if (matches.Count > 0)
             {
-                return new SiteSearchResult(webSite, word) { Occurences = matches.Count };
+                return new SiteSearchResult(webSite, word) { Occurences = matches.Count, Matches = matches};
             }
             return new SiteSearchResult(webSite, word) { Occurences = 0 };
         }
@@ -56,7 +59,6 @@ namespace WebLibrary
             while (i < length)
             {
                 char c = s[i];
-
                 if (insideScript)
                 {
                     if (i + 1 < length)
@@ -70,9 +72,7 @@ namespace WebLibrary
                         continue;
                     }
                     else
-                    {
                         break;
-                    }
                 }
                 if (c.Equals('<') && insideTag == false)
                 {
@@ -80,13 +80,9 @@ namespace WebLibrary
                     if (i + 2 < length)
                     {
                         if (s[i + 1].Equals('s') && s[i + 2].Equals('c'))
-                        {
                             insideScript = true;
-                        }
                         else
-                        {
                             insideScript = false;
-                        }
                     }
                     i++;
                     continue;
@@ -97,11 +93,43 @@ namespace WebLibrary
                     i++;
                     continue;
                 }
+
                 if (!(insideTag))
                     builder.Append(c.ToString());
                 i++;
             }
             return builder.ToString();
+        }
+
+        public void WriteToFile()
+        {
+            try
+            {
+                using (StreamWriter writer = new StreamWriter("output.txt"))
+                {
+                    writer.Write(_RawHTML);
+                    writer.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            try
+            {
+                using (StreamWriter writer = new StreamWriter("stripped.txt"))
+                {
+                    writer.Write(_StrippedHTML);
+                    writer.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+
         }
     }
 
@@ -112,6 +140,8 @@ namespace WebLibrary
         public string Word { get; set; }
 
         public int Occurences { get; set; }
+
+        public MatchCollection Matches { get; set; }
 
         public SiteSearchResult(WebSite siteSearched, string forWord)
         {
