@@ -33,10 +33,10 @@ namespace WebLibrary
             _RawHTML = rawHtml;
 
             rawHtml = stripHtmlTags(rawHtml);
-            Console.WriteLine(rawHtml);
+            //Console.WriteLine(rawHtml);
             _StrippedHTML = rawHtml;
 
-            Regex rgx = new Regex(word+"[^\\b]",RegexOptions.IgnoreCase);
+            Regex rgx = new Regex(word + "[^\\b]?", RegexOptions.IgnoreCase); //Kolla till rgx!
 
             MatchCollection matches = rgx.Matches(rawHtml);
             if (matches.Count > 0)

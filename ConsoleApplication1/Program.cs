@@ -68,11 +68,11 @@ namespace ConsoleApplication1
             WebSite ws = new WebSite("aftonbladet.se");
             try
             {
-                Console.WriteLine(ws.RawContent);
+                //Console.WriteLine(ws.RawContent);
                 Console.WriteLine(ws.Uri.AbsoluteUri);
                 ws.DownloadRawContent();
                 //Console.WriteLine(ws.RawContent);
-                SiteSearchResult result = searcher.SearchSiteForWord(ws, "aftonbladet");
+                SiteSearchResult result = searcher.SearchSiteForWord(ws, "super");
                 Console.WriteLine(result.Occurences);
                 searcher.WriteToFile();
                 foreach (Match match in result.Matches)
