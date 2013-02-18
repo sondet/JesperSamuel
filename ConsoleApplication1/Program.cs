@@ -72,7 +72,7 @@ namespace ConsoleApplication1
                 Console.WriteLine(ws.Uri.AbsoluteUri);
                 ws.DownloadRawContent();
                 //Console.WriteLine(ws.RawContent);
-                SiteSearchResult result = searcher.SearchSiteForWord(ws, "super");
+                SiteSearchResult result = searcher.SearchSiteForWord(ws, "aftonbladet");
                 Console.WriteLine(result.Occurences);
                 searcher.WriteToFile();
                 foreach (Match match in result.Matches)

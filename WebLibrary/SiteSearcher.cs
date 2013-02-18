@@ -14,7 +14,7 @@ namespace WebLibrary
     /// </summary>
     public class SiteSearcher
     {
-        private string _RawHTML;
+        private string _RawHTML; //Temporära bara!
         private string _StrippedHTML;
 
         public SiteSearcher()
