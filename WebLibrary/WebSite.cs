@@ -14,17 +14,15 @@ namespace WebLibrary
     /// </summary>
     public class WebSite
     {
-        private Uri _Uri;
         /// <summary>
         /// Uri of the <seealso cref="WebSite"/>
         /// </summary>
-        public Uri Uri { get { return _Uri; } }
+        public Uri Uri { get; private set; }
 
-        private string _RawContent = "";
         /// <summary>
         /// Raw HTML content of the WebSite
         /// </summary>
-        public string RawContent { get { return _RawContent; } }
+        public string RawContent { get; private set; }
 
         /// <summary>
         /// Raw HTML content of the WebSite in a StreamReader.
@@ -51,11 +49,26 @@ namespace WebLibrary
             }
         }
 
+        /// <summary>
+        /// The request sent by DownloadRawContent method
+        /// </summary>
         public HttpWebRequest HttpWebRequest { get; private set; }
 
+        /// <summary>
+        /// The respone gotten by DownLoadRawContent method
+        /// </summary>
         public HttpWebResponse HttpWebResponse { get; private set; }
 
+        private WebSite()
+        {
+            RawContent = "";
+        }
+        /// <summary>
+        /// Creates a WebSite object, TODO: throw exceptions when failed to create URI
+        /// </summary>
+        /// <param name="url"></param>
         public WebSite(string url)
+            :this()
         {
             try
             {
@@ -70,7 +83,7 @@ namespace WebLibrary
 
                 if (!(u.Scheme == Uri.UriSchemeHttp || u.Scheme == Uri.UriSchemeHttps))
                     throw new ArgumentException("Not a http or https URI");
-                _Uri = u;
+                Uri = u;
             }
             catch (UriFormatException e)
             {
@@ -86,13 +99,18 @@ namespace WebLibrary
             }
         }
 
+        /// <summary>
+        /// Creates a WebSite object, TODO: throw exceptions when failed to create URI
+        /// </summary>
+        /// <param name="url"></param>
         public WebSite(Uri url)
+            :this()
         {
             try
             {
                 if (!(url.Scheme == Uri.UriSchemeHttp || url.Scheme == Uri.UriSchemeHttps))
                     throw new ArgumentException("Not a http or https URI");
-                _Uri = url;
+                Uri = url;
             }
             catch (Exception e)
             {
@@ -100,6 +118,10 @@ namespace WebLibrary
             }
         }
 
+        /// <summary>
+        /// Tries to download raw HTML from the WebSite URI and then sets
+        /// RawContent, HttpWebRequest and HttpWebResponse properties.
+        /// </summary>
         public void DownloadRawContent()
         {
             HttpWebRequest request = null;
@@ -107,13 +129,13 @@ namespace WebLibrary
 
             try
             {
-                request = HttpWebRequest.CreateHttp(_Uri.AbsoluteUri);
+                request = HttpWebRequest.CreateHttp(Uri.AbsoluteUri);
                 response = (HttpWebResponse)request.GetResponse();
                 using (StreamReader reader = new StreamReader(response.GetResponseStream()))
                 {
                     string rawHtml = reader.ReadToEnd();
                     if (!string.IsNullOrWhiteSpace(rawHtml))
-                        _RawContent = rawHtml;
+                        RawContent = rawHtml;
                     reader.Close();
                 }
             }
