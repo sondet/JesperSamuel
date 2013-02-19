@@ -25,7 +25,36 @@ namespace WebLibrary
         /// Raw HTML content of the WebSite
         /// </summary>
         public string RawContent { get { return _RawContent; } }
-        
+
+        /// <summary>
+        /// Raw HTML content of the WebSite in a StreamReader.
+        /// Returns null if RawContent is null or error when creating stream
+        /// </summary>
+        public StreamReader RawContentStreamReader {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(this.RawContent))
+                    return null;
+                MemoryStream stream = null;
+                try
+                {
+                    byte[] bytes = Encoding.Default.GetBytes(this.RawContent);
+                    stream = new MemoryStream(bytes);
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+                if (stream != null)
+                    return new StreamReader(stream);
+                return null;
+            }
+        }
+
+        public HttpWebRequest HttpWebRequest { get; private set; }
+
+        public HttpWebResponse HttpWebResponse { get; private set; }
+
         public WebSite(string url)
         {
             try
@@ -73,10 +102,13 @@ namespace WebLibrary
 
         public void DownloadRawContent()
         {
+            HttpWebRequest request = null;
+            HttpWebResponse response = null;
+
             try
             {
-                HttpWebRequest request = HttpWebRequest.CreateHttp(_Uri.AbsoluteUri);
-                HttpWebResponse response = (HttpWebResponse) request.GetResponse();
+                request = HttpWebRequest.CreateHttp(_Uri.AbsoluteUri);
+                response = (HttpWebResponse)request.GetResponse();
                 using (StreamReader reader = new StreamReader(response.GetResponseStream()))
                 {
                     string rawHtml = reader.ReadToEnd();
@@ -92,6 +124,13 @@ namespace WebLibrary
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                if (request != null)
+                    this.HttpWebRequest = request;
+                if (response != null)
+                    this.HttpWebResponse = response;
             }
         }
 

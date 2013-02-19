@@ -7,6 +7,8 @@ using MelloLibrary;
 using NewspaperLibrary;
 using WebLibrary;
 using System.Text.RegularExpressions;
+using System.Net;
+using System.IO;
 
 namespace ConsoleApplication1
 {
@@ -72,9 +74,20 @@ namespace ConsoleApplication1
                 Console.WriteLine(ws.Uri.AbsoluteUri);
                 ws.DownloadRawContent();
                 //Console.WriteLine(ws.RawContent);
+
                 SiteSearchResult result = searcher.SearchSiteForWord(ws, "Aktier");
                 Console.WriteLine(result.Occurences);
                 searcher.WriteToFile();
+                StreamReader reader1 = ws.RawContentStreamReader;
+                string str2 = "";
+                while (str2 != null)
+                {
+                    str2 = reader1.ReadLine();
+                    Console.WriteLine(str2);
+                    //Console.ReadLine();
+                }
+                return;
+
                 foreach (Match match in result.Matches)
                 {
                     Console.WriteLine(match.Value);
