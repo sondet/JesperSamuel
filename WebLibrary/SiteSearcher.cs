@@ -68,7 +68,13 @@ namespace WebLibrary
                 string url = null;
                 try
                 {
-                    url = match.Value.Substring(9);
+                    //Kolla om a href="/artiklar/asdas. Lägg då till basen. DETTA FÖREKOMMER PÅ DI.SE
+                    //Denna lösning kan vara för enkel, när <a href="/..."> så verkar det vara som att
+                    //den alltid menar att ha www.di.se som bas
+                    if (match.Value.Substring(9, 1).Equals("/"))
+                        url = webSite.Uri.AbsoluteUri + match.Value.Substring(10);
+                    else
+                        url = match.Value.Substring(9);
                 }
                 catch (Exception e)
                 {

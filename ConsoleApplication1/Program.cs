@@ -65,14 +65,14 @@ namespace ConsoleApplication1
             //string s = searcher.stripHtmlTags("");
             //Console.WriteLine(s);
             //return;
-            WebSite ws = new WebSite("www.aftonbladet.se");
+            WebSite ws = new WebSite("www.di.se");
             try
             {
                 //Console.WriteLine(ws.RawContent);
                 Console.WriteLine(ws.Uri.AbsoluteUri);
                 ws.DownloadRawContent();
                 //Console.WriteLine(ws.RawContent);
-                SiteSearchResult result = searcher.SearchSiteForWord(ws, "super");
+                SiteSearchResult result = searcher.SearchSiteForWord(ws, "Aktier");
                 Console.WriteLine(result.Occurences);
                 searcher.WriteToFile();
                 foreach (Match match in result.Matches)
@@ -111,8 +111,8 @@ namespace ConsoleApplication1
                     {
                         if (ws.Uri.IsBaseOf(u))
                         {
-                            uris.Add(u);
-                            Console.WriteLine(u.AbsoluteUri);
+                        uris.Add(u);
+                        Console.WriteLine(u.AbsoluteUri);
                         }
                     }
                 }
