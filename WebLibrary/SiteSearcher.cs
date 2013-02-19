@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Text.RegularExpressions;
 using System.IO;
+using System.Collections.Specialized;
 
 namespace WebLibrary
 {
